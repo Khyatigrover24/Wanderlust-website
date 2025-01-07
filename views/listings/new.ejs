@@ -1,49 +1,79 @@
 <% layout('layouts/boilerplate') -%>
 
-    <div class="row">
-      <div class="col-8 offset-2">
-        <br>
-        <h3>Create a New Listing</h3>
-        <form method="POST" action="/listings" novalidate class="needs-validation">
 
-          <div class="mg-bottom-3">
-            <label for="title" class="form-label">Title</label>
-            <input name="listing[title]" placeholder="Add a catchy title" type="text" class="form-control" required/>
-            <div class="valid-feedback"> Looks good!</div>
-          </div>
-          <div class="mg-bottom-3">
-            <label for="description" class="form-label">Description</label>
-            <textarea name="listing[description]" class="form-control" required></textarea>
-            <div class="invalid-feedback">Please enter a short description.</div>
-          </div>
-          <div class="mg-bottom-3">
-            <label for="image" class="form-label">Image Link</label>
-            <input name="listing[image]" placeholder="enter image URL/Link" type="text" class="form-control"/>
-          </div>
-          <div class="row">
-            <div class="mg-bottom-3 col-md-4">
-              <label for="price" class="form-label">Price</label>
-              <input name="listing[price]" placeholder="enter price" type="number" class="form-control" required />
-              <div class="invalid-feedback">Please provide a valid Price.</div>
+  <script>
+    function preventNegativeSign(event) {
+      if (event.key === '-' || event.key === 'e') {
+        event.preventDefault();
+      }
+    }
+    function preventLeadingSpace(event) {
+      const input = event.target;
+      if (input.value.length === 0 && event.key === ' ') {
+        event.preventDefault();
+      }
+    }
+
+    function trimLeadingSpace(event) {
+      const input = event.target;
+      input.value = input.value.trimStart();
+    }
+  </script>
+  <div class="row">
+    <div class="col-8 offset-2">
+      <br>
+      <h3>Share Your Place</h3>
+      <form method="POST" action="/listings" novalidate class="needs-validation">
+
+        <div class="mg-bottom-3">
+          <label for="title" class="form-label">Title</label>
+          <input name="listing[title]" placeholder="Add a catchy title" type="text" class="form-control"
+            onkeypress="preventLeadingSpace(event)" oninput="trimLeadingSpace(event)" required />
+          <div class="valid-feedback"> Looks good!</div>
+        </div>
+        <div class="mg-bottom-3">
+          <label for="description" class="form-label">Description</label>
+          <textarea name="listing[description]" class="form-control" onkeypress="preventLeadingSpace(event)"
+            oninput="trimLeadingSpace(event)" required></textarea>
+          <div class="invalid-feedback">Please enter a short description.</div>
+        </div>
+        <div class="mg-bottom-3">
+          <label for="image" class="form-label" onkeypress="preventLeadingSpace(event)"
+            oninput="trimLeadingSpace(event)">Image Link</label>
+          <input name="listing[image]" placeholder="enter image URL/Link" type="text" class="form-control" />
+        </div>
+        <div class="row">
+          <div class="mg-bottom-3 col-md-4">
+            <label for="price" class="form-label">Price</label>
+            <input name="listing[price]" placeholder="enter price" type="number" class="form-control"
+              onkeypress="preventNegativeSign(event)" onkeypress="preventLeadingSpace(event)"
+              oninput="trimLeadingSpace(event)" required />
+            <div class=" invalid-feedback">Please provide a valid Price.
             </div>
-            <div class="mg-bottom-3 col-md-8">
-              <label for="country" class="form-label">Country</label>
-              <input name="listing[country]" placeholder="enter country" type="text" class="form-control" required />
-              <div class="invalid-feedback">Please select a valid country.</div>
-            </div>
           </div>
-          <div class="mg-bottom-3">
-            <label for="location" class="form-label">Location</label>
-            <input name="listing[location]" placeholder="enter location" type="text" class="form-control" required />
-            <div class="invalid-feedback">
-              Please select a valid location.
-            </div>
+          <div class="mg-bottom-3 col-md-8">
+            <label for="country" class="form-label">Country</label>
+            <input name="listing[country]" placeholder="enter country" type="text" class="form-control"
+              onkeypress="preventLeadingSpace(event)" oninput="trimLeadingSpace(event)" required />
+            <div class="invalid-feedback">Please select a valid country.</div>
           </div>
-          <br>
-          <button class="btn btn-dark add-btn">Add</button>
-          <br>
-          <br>
+        </div>
+        <div class="mg-bottom-3">
+          <label for="location" class="form-label">Location</label>
+          <input name="listing[location]" placeholder="enter location" type="text" class="form-control"
+            onkeypress="preventLeadingSpace(event)" oninput="trimLeadingSpace(event)" required />
+          <div class="invalid-feedback">
+            Please select a valid location.
+          </div>
+        </div>
+        <br>
+        <div class="d-grid gap-2">
+          <button class="btn btn-sm btn-dark p-2">Host Your Home</button>
+        </div>
+
+        <br>
+
       </form>
-      </div>
+
     </div>
-  
+  </div>

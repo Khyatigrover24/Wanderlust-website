@@ -10,12 +10,13 @@ body{
     height: 5rem;
     background-color: white;
 }
-.fa-compass{
-    color: #fe424d;
-    font-size: 2rem;
+.fa-book-atlas{
+    color:#683193;
+    font-size: 3rem;
 }
 .nav-link{
     color: #222222 !important;
+    text-size-adjust: 3rem;
 }
 .f-info-links,.f-info-socials,.f-info-brand{
     width: 100%;
@@ -55,6 +56,7 @@ body{
     border-radius: 1rem !important;
     width: 100% !important;
     object-fit: cover !important;
+    box-shadow: rgba(0, 0, 0, 0.35) 10px 10px 15px;
 }
 .card-body{
     padding: 0 !important;
@@ -80,9 +82,75 @@ body{
     background-color: #fe424d !important;
     border: none !important;
 }
+.book-btn{
+    background-color: #683193;;
+}
+
 .show-img{
     height: 40vh;
 }
 .btns{
     display: flex;
+    
 }
+
+
+/* mobile view 3btn  */
+.navbar-nav{
+    background-color: rgba(255, 255, 255, 0.928);
+    font-weight: 800;
+    font-size: 1.1rem;
+    }
+
+    /* mobile view show route  */
+@media (max-width: 767px){
+    .show-main{
+        display: contents !important;
+        width: auto !important;
+        margin: none;
+        padding: none;
+        /* position: relative; */
+        max-width: 650px !important;
+    }
+    .show-main>div{
+        /* align-items: center; */
+        width: 95%;
+        /* position: relative !important;
+        left: 10px !important; */
+        margin: auto auto !important;
+    }
+   
+    
+    }
+
+@media (max-width: 575.98px) {
+        .custom-margin {
+          margin-left: 20px; /* Margin-left for extra small screens */
+        } 
+        .delete-btn{
+            margin-left: 10px;
+        }
+    }  
+
+    .reserve-title {
+        display: flex; /* Ensures icons and text are aligned in a row */
+        gap: 5px; /* Adjust this to control spacing */
+        align-items: center; /* Vertically center the content */
+      }
+      
+      .reserve-title i {
+        font-size: 2rem; /* Adjust icon size to match text */
+      
+      }
+
+      .fa-umbrella-beach{
+          color:orange;
+      }
+      .fa-jet-fighter{
+          color: green;
+      }
+      
+      .reserve-title h3 {
+        margin: 0; /* Remove extra margins */
+        font-size: 2rem; /* Adjust text size if needed */
+      }

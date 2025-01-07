@@ -1,0 +1,81 @@
+<% layout('layouts/boilerplate') -%>
+    <style>
+        .pay-now-btn {
+            background-color: #683193;
+            color: #fff;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .pay-now-btn:hover {
+            background-color: #562978;
+        }
+    </style>
+    <div class="row">
+        <div class="col-4 offset-4">
+            <br>
+            <br>
+            <div class="payment-title d-flex align-items-center justify-content-center">
+                <!-- <i class="fa-solid fa-credit-card"></i> -->
+
+                <h3 class="text-center fw-bolder">Payment Details</h3>
+            </div>
+
+            <form id="paymentForm" action="/process-payment" method="POST" novalidate class="needs-validation">
+                <div class="mg-bottom-3">
+                    <label for="card-name" class="form-label">Cardholder Name</label>
+                    <input type="text" class="form-control shadow-sm" id="card-name" name="card_name"
+                        placeholder="Enter your full name" required>
+                    <div class="invalid-feedback">Please enter the cardholder's name.</div>
+                </div>
+
+                <div class="mg-bottom-3">
+                    <label for="card-number" class="form-label">Card Number</label>
+                    <input type="text" class="form-control shadow-sm" id="card-number" name="card_number"
+                        placeholder="1234 5678 9012 3456" required>
+                    <div class="invalid-feedback">Please enter a valid card number.</div>
+                </div>
+
+                <div class="mg-bottom-3">
+                    <label for="expiry-date" class="form-label">Expiry Date</label>
+                    <input type="month" class="form-control shadow-sm" id="expiry-date" name="expiry_date" required>
+                    <div class="invalid-feedback">Please select an expiry date.</div>
+                </div>
+
+                <div class="mg-bottom-3">
+                    <label for="cvv" class="form-label">CVV</label>
+                    <input type="password" class="form-control shadow-sm" id="cvv" name="cvv" placeholder="123"
+                        required>
+                    <div class="invalid-feedback">Please enter the CVV.</div>
+                </div>
+                <br>
+
+                <button type="submit" class="pay-now-btn">Pay Now</button>
+
+
+            </form>
+            <br>
+            <br>
+            <br>
+            <br>
+
+        </div>
+    </div>
+    <script>
+        document.getElementById('paymentForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const form = event.target;
+            if (form.checkValidity()) {
+                alert('Payment successful');
+                form.submit();
+                window.location.href = "/listings";
+
+            } else {
+                alert('Please fill all required fields correctly.');
+            }
+        });
+    </script>

@@ -3,8 +3,15 @@
   <style>
     #filters {
       display: flex;
-      flex-wrap: wrap;
+      width: 100% !important;
       align-items: center;
+      height: 100px !important;
+      overflow: scroll;
+    }
+
+    #filters a {
+      color: black;
+      text-decoration: none;
     }
 
     .filter {
@@ -17,17 +24,28 @@
     .filter:hover {
       opacity: 1;
       cursor: pointer;
+      transform: scale(1.05) !important;
+      transition: 100ms ease all !important;
     }
-    .tax-info{
+
+    .filter p {
+      font-size: 0.95rem;
+    }
+
+    .tax-info {
       display: none;
     }
-    .tax-toggle{
+
+    .tax-toggle {
       border: 1px solid black;
       border-radius: 1rem;
-      height: 3.5rem;
+      height: 3.58rem;
       padding: 1rem;
-      margin-left: 2rem;
+      /* margin-left: 3rem; */
       display: flex;
+      min-width: 200px;
+      width: fit-content;
+      margin-top: 0.8rem;
       align-items: center;
     }
   </style>
@@ -36,65 +54,66 @@
       <button>Create New Listing</button>
     </form> -->
   <div id="filters">
-    <div class="filter">
+    <div class="filter" onclick="filterListings('trending')">
       <div><i class="fa-solid fa-fire"></i></div>
       <p>Trending</p>
     </div>
-    <div class="filter">
+    <div class="filter" onclick="filterListings('rooms')">
       <div><i class="fa-solid fa-bed"></i></div>
       <p>Rooms</p>
     </div>
-    <div class="filter">
+    <div class="filter" onclick="filterListings('iconic-cities')">
       <div><i class="fa-solid fa-city"></i></div>
       <p>Iconic cities</p>
     </div>
-    <div class="filter">
+    <div class="filter" onclick="filterListings('mountains')">
       <div><i class="fa-solid fa-mountain"></i></div>
       <p>Mountains</p>
     </div>
-    <div class="filter">
+    <div class="filter" onclick="filterListings('castles')">
       <div><i class="fa-brands fa-fort-awesome"></i></div>
       <p>Castles</p>
     </div>
-    <div class="filter">
+    <div class="filter" onclick="filterListings('amazing-pools')">
       <div><i class="fa-solid fa-person-swimming"></i></div>
       <p>Amazing Pools</p>
     </div>
-    <div class="filter">
+    <div class="filter" onclick="filterListings('camping')">
       <div><i class="fa-solid fa-campground"></i></div>
       <p>Camping</p>
     </div>
-    <div class="filter">
+    <div class="filter" onclick="filterListings('farms')">
       <div><i class="fa-solid fa-tractor"></i></div>
       <p>Farms</p>
     </div>
-    <div class="filter">
+    <div class="filter" onclick="filterListings('arctic')">
       <div><i class="fa-solid fa-snowflake"></i></div>
       <p>Arctic</p>
     </div>
-    <div class="filter">
+    <div class="filter" onclick="filterListings('dome')">
       <div><i class="fa-solid fa-landmark-dome"></i></div>
       <p>Dome</p>
     </div>
-    <div class="filter">
+    <div class="filter" onclick="filterListings('ship')">
       <div><i class="fa-solid fa-ship"></i></div>
       <p>Ship</p>
     </div>
-    
 
-    
+
+
+
     <div class="tax-toggle">
       <div class="form-check-reverse form-switch">
         <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
         <label class="form-check-label" for="flexSwitchCheckDefault">Display total after taxes</label>
       </div>
     </div>
-
-
-
   </div>
 
-  <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
+
+
+
+  <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3 ">
     <% for(let listing of allListings) { %>
       <a href="/listings/<%= listing._id %>" class="listing-link">
         <div class="card col listing-card">
@@ -107,24 +126,29 @@
               </b>
               <br>
               &#8377;<%= listing.price.toLocaleString("en-IN") %>/night
-              <i class="tax-info">&nbsp;+18% GST</i>
+                <i class="tax-info">&nbsp;+18% GST</i>
           </div>
         </div>
         <% } %>
       </a>
   </div>
   <script>
-    let taxswitch=document.getElementById("flexSwitchCheckDefault");
-    taxswitch.addEventListener("click",()=>{
-      let taxinfo=document.getElementsByClassName("tax-info")
-      for(info of taxinfo){
-        if(info.style.display !="inline"){
-          info.style.display="inline";
-        }else{
-          info.style.display="none";
-      }
+    let taxswitch = document.getElementById("flexSwitchCheckDefault");
+    taxswitch.addEventListener("click", () => {
+      let taxinfo = document.getElementsByClassName("tax-info")
+      for (info of taxinfo) {
+        if (info.style.display != "inline") {
+          info.style.display = "inline";
+        } else {
+          info.style.display = "none";
+        }
       }
 
 
     })
+
+
+    function filterListings(category) {
+      window.location.href = `/listings/filter/${category}`;
+    }
   </script>
